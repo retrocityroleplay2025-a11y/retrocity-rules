@@ -1,0 +1,43 @@
+name: 🚀 Deploy Retro City Rules to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # nur bei Änderungen auf main-Branch
+  workflow_dispatch: # erlaubt manuelles Auslösen
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: 📦 Upload Artifacts
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
