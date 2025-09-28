@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Retro City – Regelwerke</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#0e0e12">
+  <style>
+    /* Hintergrund */
+    body {
+      margin: 0;
+      font-family: Inter, Roboto, Arial, sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: linear-gradient(180deg,#0a0014 0%,#1a0b2e 40%,#ff3cac 100%);
+    }
+
+    /* Sonne */
+    .sun {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: linear-gradient(180deg,#ffdf6b 0%,#ff3cac 70%);
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(255,60,172,0.7);
+      z-index: 0;
+    }
+    .sun::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0 6px,
+        rgba(0,0,0,.4) 6px 12px
+      );
+      animation: sunlines 6s linear infinite;
+    }
+    @keyframes sunlines {
+      from { transform: translateY(0); }
+      to   { transform: translateY(12px); }
+    }
+
+    /* Grid */
+    .grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 40vh;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.15) 1px, transparent 1px),
+        linear-gradient(to top, rgba(255,255,255,.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: perspective(600px) rotateX(70deg);
+      animation: gridmove 10s linear infinite;
+      z-index: 0;
+    }
+    @keyframes gridmove {
+      from { background-position: 0 0; }
+      to   { background-position: 0 40px; }
+    }
+
+    /* Animationen */
+    .logo-anim {
+      animation: pulse 3s infinite;
+    }
+    @keyframes pulse {
+      0%   { transform: scale(1);   box-shadow: 0 0 20px rgba(255,60,172,.4); }
+      50%  { transform: scale(1.05); box-shadow: 0 0 40px rgba(43,210,255,.6); }
+      100% { transform: scale(1);   box-shadow: 0 0 20px rgba(255,60,172,.4); }
+    }
+    .fadein {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadein 1.5s forwards;
+    }
+    @keyframes fadein {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Discord Button */
+    .discord-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background: linear-gradient(90deg,#5865F2,#3c45a5);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .discord-btn:hover {
+      background: linear-gradient(90deg,#6d79ff,#4752c4);
+    }
+
+    /* Discord Widget */
+    .discord-widget {
+      margin: 40px auto;
+      max-width: 350px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,.5);
+    }
+
+    /* Content über Hintergrund */
+    main, header, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 📱 Mobile Optimierung */
+@media (max-width: 768px) {
+  /* Sonne kleiner */
+  .sun {
+    width: 180px;
+    height: 180px;
+    top: 40px;
+  }
+
+  /* Grid flacher */
+  .grid {
+    height: 25vh;
+    transform: perspective(400px) rotateX(70deg);
+  }
+
+  /* Logo kleiner */
+  main img.logo-anim {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Text etwas kleiner */
+  h1 {
+    font-size: 24px;
+  }
+  main p {
+    font-size: 15px;
+  }
+
+  /* Discord-Button */
+  .discord-btn {
+    width: 90%;
+    max-width: 280px;
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  /* Widget auf volle Breite */
+  .discord-widget {
+    max-width: 100%;
+    height: auto;
+  }
+  .discord-widget iframe {
+    height: 300px;
+  }
+
+  /* Navigation umbrechen */
+  .topnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .topnav a {
+    margin-left: 0;
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Retro Hintergrund -->
+  <div class="sun"></div>
+  <div class="grid"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="wrap nav">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="logo-192.png" alt="Retro City Logo"
+             style="width:36px;height:36px;border-radius:8px;">
+        <span>Retro City</span>
+      </div>
+      <div class="spacer"></div>
+      <!-- Navigation -->
+      <nav class="topnav">
+        <a href="index.html">Home</a>
+        <a href="ic.html">IC-Regeln</a>
+        <a href="ooc.html">OOC-Regeln</a>
+        <a href="staff.html">Staff-Regeln</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="wrap" style="text-align:center;padding:60px 20px;">
+    <img src="logo-192.png" alt="Retro City Logo"
+         class="logo-anim"
+         style="width:140px;height:140px;border-radius:16px;">
+
+    <h1 class="fadein" style="animation-delay:.5s">Willkommen bei Retro City</h1>
+    <p class="fadein" style="animation-delay:1s">
+      Minecraft GTA-RP Server – Regelwerke für IC, OOC & Staff.<br>
+      Bitte lies die Regeln sorgfältig durch, bevor du spielst.
+    </p>
+
+    <p class="fadein" style="animation-delay:1.5s">
+      📜 <a href="ic.html">IC-Regeln</a> · ⚙️ <a href="ooc.html">OOC-Regeln</a> · 🛡️ <a href="staff.html">Staff-Regeln</a>
+    </p>
+
+    <a href="https://discord.gg/https://discord.gg/9W5r88Gq" target="_blank"
+       class="discord-btn fadein" style="animation-delay:2s">
+      💬 Discord beitreten
+    </a>
+
+    <div class="discord-widget fadein" style="animation-delay:2.5s">
+      <iframe src="https://discord.com/widget?id=1421553466718814360&theme=dark"
+              width="100%" height="400"
+              allowtransparency="true" frameborder="0"
+              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    © Retro City · Regelwerke · Stand: <time datetime="2025-09-28">28.09.2025</time>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
