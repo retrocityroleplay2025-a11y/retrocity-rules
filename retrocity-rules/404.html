@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 – Seite nicht gefunden</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#0e0e12">
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Roboto, Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(180deg,#0a0014 0%,#1a0b2e 40%,#ff3cac 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 64px;
+      margin: 0;
+      background: linear-gradient(90deg,var(--brand-1),var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    p {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+    a.back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background: linear-gradient(90deg,#5865F2,#3c45a5);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    a.back-btn:hover {
+      background: linear-gradient(90deg,#6d79ff,#4752c4);
+    }
+    .sun {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(180deg,#ffdf6b 0%,#ff3cac 70%);
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(255,60,172,0.7);
+      z-index: -1;
+    }
+    .grid {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 30vh;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.15) 1px, transparent 1px),
+        linear-gradient(to top, rgba(255,255,255,.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: perspective(600px) rotateX(70deg);
+      animation: gridmove 10s linear infinite;
+      z-index: -1;
+    }
+    @keyframes gridmove {
+      from { background-position: 0 0; }
+      to   { background-position: 0 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sun"></div>
+  <div class="grid"></div>
+
+  <h1>404</h1>
+  <p>Ups! Diese Seite existiert nicht.</p>
+  <a href="index.html" class="back-btn">Zur Startseite</a>
+</body>
+</html>
